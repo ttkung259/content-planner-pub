@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <link rel="manifest" href="manifest.json">
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("service-worker.js")
+        .then(() => console.log("Service Worker Registered"));
+      }
+    </script>
+    <meta charset="UTF-8">
+    <title>แผนคอนเทนต์ผับเซเลป</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+        header { background: #8e44ad; color: white; padding: 1rem; text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem auto; background: white; }
+        th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; font-size: 0.9rem; }
+        th { background: #f1c40f; }
+        .status { font-weight: bold; }
+        .✅ { color: green; }
+        .📝 { color: #e67e22; }
+        .⏳ { color: #7f8c8d; }
+        .🚫 { color: red; }
+        footer { text-align: center; font-size: 0.8rem; padding: 1rem; color: #888; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📅 แผนคอนเทนต์ผับเซเลป</h1>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>วันที่</th>
+                    <th>วัน</th>
+                    <th>คอนเทนต์</th>
+                    <th>สถานะ</th>
+                </tr>
+            </thead>
+            <tbody id="content-table">
+                <!-- Data will be inserted here -->
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        © 2025 เซเลปผับ. พัฒนาโดยคุณเอง ✨
+    </footer>
+    <script>
+        const statusCycle = ["⏳", "📝", "✅", "🚫"];
+        function getNextStatus(current) {
+            const i = statusCycle.indexOf(current);
+            return statusCycle[(i + 1) % statusCycle.length];
+        }
+
+        function saveStatuses(statuses) {
+            localStorage.setItem("content_statuses", JSON.stringify(statuses));
+        }
+
+        function loadStatuses() {
+            return JSON.parse(localStorage.getItem("content_statuses") || "{}");
+        }
+
+        const contentData = [
+
+        const contentData = [
+["2025-08-01", "ศุกร์", "ภาพลูกค้า (Story)", "⏳"],
+["2025-08-02", "เสาร์", "วิดีโอกิจกรรมสดในร้าน", "⏳"],
+["2025-08-03", "อาทิตย์", "สรุปกิจกรรมรายสัปดาห์", "⏳"],
+["2025-08-04", "จันทร์", "รีวิวเมนูอาหารแนะนำ", "⏳"],
+["2025-08-05", "อังคาร", "เบื้องหลังบาร์เทนเดอร์", "⏳"],
+["2025-08-06", "พุธ", "โพสต์โปรโมชัน Happy Hour", "⏳"],
+["2025-08-07", "พฤหัส", "โพสต์บรรยากาศร้าน", "⏳"],
+["2025-08-08", "ศุกร์", "#Hashtag Challenge", "⏳"],
+["2025-08-09", "เสาร์", "ภาพลูกค้ากลุ่มใหญ่", "⏳"],
+["2025-08-10", "อาทิตย์", "แชร์รูปเซ็ตบรรยากาศ", "⏳"],
+["2025-08-11", "จันทร์", "รีวิวเครื่องดื่มสูตรพิเศษ", "⏳"],
+["2025-08-12", "อังคาร", "วิธีทำค็อกเทล", "⏳"],
+["2025-08-13", "พุธ", "โปรลดนักศึกษา", "⏳"],
+["2025-08-14", "พฤหัส", "โปรโมตกิจกรรมสุดสัปดาห์", "⏳"],
+["2025-08-15", "ศุกร์", "DJ Live วิดีโอ", "⏳"],
+["2025-08-16", "เสาร์", "โปรโมตกิจกรรมสัปดาห์หน้า", "⏳"],
+["2025-08-17", "อาทิตย์", "รีวิวจากลูกค้าจริง", "⏳"],
+["2025-08-18", "จันทร์", "รีวิวเซ็ตอาหาร+เครื่องดื่ม", "⏳"],
+["2025-08-19", "อังคาร", "สัมภาษณ์พนักงาน", "⏳"],
+["2025-08-20", "พุธ", "แจกคูปองผ่าน Story", "⏳"],
+["2025-08-21", "พฤหัส", "ภาพเตรียมเวที/โชว์", "⏳"],
+["2025-08-22", "ศุกร์", "แชร์รีวิวจากลูกค้า", "⏳"],
+["2025-08-23", "เสาร์", "เบื้องหลังปาร์ตี้เมื่อคืน", "⏳"],
+["2025-08-24", "อาทิตย์", "แนะนำตารางกิจกรรมเดือนหน้า", "⏳"],
+["2025-08-25", "จันทร์", "รีวิวเมนูใหม่ประจำเดือน", "⏳"],
+["2025-08-26", "อังคาร", "Live ถาม-ตอบเมนูจากลูกค้า", "⏳"],
+["2025-08-27", "พุธ", "Mini Game แจกของฟรี", "⏳"],
+["2025-08-28", "พฤหัส", "Reels ชวนมาเที่ยว", "⏳"],
+["2025-08-29", "ศุกร์", "แชร์รีวิวจากลูกค้า", "⏳"],
+["2025-08-30", "เสาร์", "เบื้องหลังปาร์ตี้เมื่อคืน", "⏳"],
+["2025-08-31", "อาทิตย์", "แนะนำตารางกิจกรรมเดือนหน้า", "⏳"],
+        ];
+        const table = document.getElementById("content-table");
+        contentData.forEach(row => {
+            const tr = document.createElement("tr");
+            row.forEach((cell, i) => {
+                const td = document.createElement("td");
+                td.textContent = cell;
+                if (i === 3) td.className = "status " + cell;
+                tr.appendChild(td);
+            });
+            table.appendChild(tr);
+        });
+    
+        const table = document.getElementById("content-table");
+        const savedStatuses = loadStatuses();
+
+        contentData.forEach((row, idx) => {
+            const tr = document.createElement("tr");
+            row.forEach((cell, i) => {
+                const td = document.createElement("td");
+                if (i === 3) {
+                    const statusKey = row[0]; // ใช้วันที่เป็น key
+                    const saved = savedStatuses[statusKey];
+                    if (saved) {
+                        cell = saved;
+                        row[3] = saved;
+                    }
+                    td.textContent = cell;
+                    td.className = "status " + cell;
+                    td.style.cursor = "pointer";
+                    td.onclick = () => {
+                        const newStatus = getNextStatus(td.textContent);
+                        td.textContent = newStatus;
+                        td.className = "status " + newStatus;
+                        savedStatuses[statusKey] = newStatus;
+                        saveStatuses(savedStatuses);
+                    };
+                } else {
+                    td.textContent = cell;
+                }
+                tr.appendChild(td);
+            });
+            table.appendChild(tr);
+        });
+    </script>
+</body>
+</html>
