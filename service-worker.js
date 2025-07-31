@@ -1,15 +1,12 @@
 self.addEventListener("install", e => {
   e.waitUntil(
     caches.open("app-cache").then(cache => {
-      return cache.addAll(["./แอพแผนคอนเทนต์_pwa.html"]);
+      return cache.addAll(["./index.html"]);
     })
   );
 });
-
 self.addEventListener("fetch", e => {
   e.respondWith(
-    caches.match(e.request).then(response => {
-      return response || fetch(e.request);
-    })
+    caches.match(e.request).then(response => response || fetch(e.request))
   );
 });

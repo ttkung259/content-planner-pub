@@ -1,7 +1,7 @@
 {
   "name": "แผนคอนเทนต์ผับเซเลป",
-  "short_name": "เซเลปคอนเทนต์",
-  "start_url": "./แอพแผนคอนเทนต์_pwa.html",
+  "short_name": "ContentPlan",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#8e44ad",
